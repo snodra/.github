@@ -10,15 +10,15 @@ Commands, queries, events and sagas — routed by a stateless server, carried by
 Streams, and stored in the databases you already run. No commercial messaging platform and no broker
 in the request path.
 
-[![Documentation](https://img.shields.io/badge/docs-snodra.damoreira.com-0B5FFF?logo=readthedocs&logoColor=white)](https://snodra.damoreira.com/)
+[![Documentation](https://img.shields.io/badge/docs-snodra.damoreira.com-0B5FFF?logo=readthedocs&logoColor=white)](https://snodra.damoreira.com/docs/)
 [![Server](https://img.shields.io/github/v/release/snodra/snodra-server?label=server&color=10B981)](https://github.com/snodra/snodra-server/releases)
 [![Kotlin](https://img.shields.io/maven-central/v/com.damoreira.snodra/snodra-messaging?label=Kotlin&color=F43F7E)](https://central.sonatype.com/artifact/com.damoreira.snodra/snodra-messaging)
 [![Rust](https://img.shields.io/crates/v/snodra-messaging-rs?label=Rust&color=F74C00)](https://crates.io/crates/snodra-messaging-rs)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/snodra/snodra-server/blob/main/LICENSE)
 
-[Documentation](https://snodra.damoreira.com/) ·
-[Getting started](https://snodra.damoreira.com/getting-started/) ·
-[Core concepts](https://snodra.damoreira.com/concepts/) ·
+[Documentation](https://snodra.damoreira.com/docs/) ·
+[Getting started](https://snodra.damoreira.com/docs/getting-started/) ·
+[Core concepts](https://snodra.damoreira.com/docs/concepts/) ·
 [Conformance](https://github.com/snodra/snodra-conformance)
 
 </div>
@@ -79,7 +79,7 @@ libraries give every service the same delivery, retry and saga semantics.
 | **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client for the same protocol | Go | 🚧 in progress |
 | **[snodra-event-browser](https://github.com/snodra/snodra-event-browser)** | Read-only event browser add-on for the dashboard | Rust | `docker run snodra/snodra-event-browser:0.2.0` |
 | **[snodra-conformance](https://github.com/snodra/snodra-conformance)** | The protocol conformance runner and reference service | Rust | `cargo run -p snodra-conformance` |
-| **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | MkDocs Material | [snodra.damoreira.com](https://snodra.damoreira.com/) |
+| **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | MkDocs Material | [snodra.damoreira.com](https://snodra.damoreira.com/docs/) |
 
 ## Quick start
 
@@ -91,7 +91,7 @@ docker run --rm -p 7000:7000 -p 7001:7001 snodra/snodra-server:0.5.4
 
 gRPC is on `7000` and the dashboard on <http://localhost:7001/ui/>. With no configuration the server
 accepts anonymous clients; production settings, TLS and ACLs are in the
-[server reference](https://snodra.damoreira.com/server/).
+[server reference](https://snodra.damoreira.com/docs/server/).
 
 Add the client that matches your service.
 
@@ -115,8 +115,8 @@ cargo add snodra-messaging-mongo@0.6        # or snodra-messaging-sqlx with a da
 ```
 
 Then take the shortest path from a running server to a registered handler:
-[Your first service](https://snodra.damoreira.com/getting-started/first-service/). The
-[installation guide](https://snodra.damoreira.com/getting-started/installation/) has every artifact,
+[Your first service](https://snodra.damoreira.com/docs/getting-started/first-service/). The
+[installation guide](https://snodra.damoreira.com/docs/getting-started/installation/) has every artifact,
 crate and database feature.
 
 ## One protocol, many languages
@@ -132,15 +132,15 @@ written in.
 
 | Section | What you will find |
 |---|---|
-| [Getting started](https://snodra.damoreira.com/getting-started/) | Install the server and a client, then send a first command |
-| [Core concepts](https://snodra.damoreira.com/concepts/) | CQRS, commands, queries, events, sagas, processors and consistency |
-| [Server](https://snodra.damoreira.com/server/) | Routing, authentication, settings, dashboard, topology, processor control, protocol |
-| [Kotlin library](https://snodra.damoreira.com/messaging/kotlin/) | Quick start, configuration, API, testing and modules |
-| [Rust library](https://snodra.damoreira.com/messaging/rust/) | Quick start, configuration, API, testing and add-ons |
-| [Add-ons](https://snodra.damoreira.com/add-ons/) | Kafka, RabbitMQ Streams, MongoDB and SQL stores |
-| [Operations](https://snodra.damoreira.com/operations/) | Upgrades, deployment and observability |
-| [Examples](https://snodra.damoreira.com/examples/) | A working multi-service system with the sandbox |
-| [Integrations](https://snodra.damoreira.com/integrations/) | Partner systems and external sources |
+| [Getting started](https://snodra.damoreira.com/docs/getting-started/) | Install the server and a client, then send a first command |
+| [Core concepts](https://snodra.damoreira.com/docs/concepts/) | CQRS, commands, queries, events, sagas, processors and consistency |
+| [Server](https://snodra.damoreira.com/docs/server/) | Routing, authentication, settings, dashboard, topology, processor control, protocol |
+| [Kotlin library](https://snodra.damoreira.com/docs/messaging/kotlin/) | Quick start, configuration, API, testing and modules |
+| [Rust library](https://snodra.damoreira.com/docs/messaging/rust/) | Quick start, configuration, API, testing and add-ons |
+| [Add-ons](https://snodra.damoreira.com/docs/add-ons/) | Kafka, RabbitMQ Streams, MongoDB and SQL stores |
+| [Operations](https://snodra.damoreira.com/docs/operations/) | Upgrades, deployment and observability |
+| [Examples](https://snodra.damoreira.com/docs/examples/) | A working multi-service system with the sandbox |
+| [Integrations](https://snodra.damoreira.com/docs/integrations/) | Partner systems and external sources |
 
 ## Contributing
 
