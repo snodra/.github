@@ -61,7 +61,7 @@ libraries give every service the same delivery, retry and saga semantics.
 - **Your infrastructure, your choice.** Kafka or RabbitMQ Streams for events; MongoDB, PostgreSQL or
   MySQL for the outbox, markers, dead letters and saga state. One event store and one message store per
   service, selected by an add-on.
-- **One protocol, many languages.** The Kotlin and Rust clients are interchangeable in front of the
+- **One protocol, many languages.** The Kotlin, Rust and Go clients are interchangeable in front of the
   server and on the event store. The [conformance suite](https://github.com/snodra/snodra-conformance)
   proves it, check by check, against a real server and fake hubs.
 - **Production pieces included.** Static token, OAuth2/OIDC JWT and mTLS authentication with per-service
@@ -76,7 +76,7 @@ libraries give every service the same delivery, retry and saga semantics.
 | **[snodra-messaging](https://github.com/snodra/snodra-messaging)** | Spring Boot starter: buses, handlers, outbox, sagas, testing kits | Kotlin, Spring Boot 4 | [`com.damoreira.snodra:snodra-messaging`](https://central.sonatype.com/artifact/com.damoreira.snodra/snodra-messaging) |
 | **[snodra-messaging-rs](https://github.com/snodra/snodra-messaging-rs)** | One builder for the hub client, event store, outbox and handlers | Rust | [`snodra-messaging-rs`](https://crates.io/crates/snodra-messaging-rs) |
 | **[snodra-messaging-python](https://github.com/snodra/snodra-messaging-python)** | Python client for the same protocol | Python | 🚧 in progress |
-| **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client for the same protocol | Go | 🚧 in progress |
+| **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client for the same protocol, at feature level 1 | Go | v0.1.1 |
 | **[snodra-event-browser](https://github.com/snodra/snodra-event-browser)** | Read-only event browser add-on for the dashboard | Rust | `docker run snodra/snodra-event-browser:0.2.0` |
 | **[snodra-conformance](https://github.com/snodra/snodra-conformance)** | The protocol conformance runner and reference service | Rust | `cargo run -p snodra-conformance` |
 | **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | Astro Starlight | [snodra.damoreira.com](https://snodra.damoreira.com/docs/) |
@@ -122,7 +122,7 @@ crate and database feature.
 ## One protocol, many languages
 
 A Snodra service registers the command and query types it handles and opens one long-lived stream.
-Any language can implement that protocol — the Kotlin and Rust libraries already do, and the
+Any language can implement that protocol — the Kotlin, Rust and Go libraries already do, and the
 [conformance runner](https://github.com/snodra/snodra-conformance) checks a client against a real
 server and fake hubs, with **PASS**, **FAIL**, **SKIPPED** and **NOT IMPLEMENTED** per check id. A
 client that passes feature level 1 is a first-class member of the suite, whichever language it is
@@ -137,6 +137,7 @@ written in.
 | [Server](https://snodra.damoreira.com/docs/server/) | Routing, authentication, settings, dashboard, topology, processor control, protocol |
 | [Kotlin library](https://snodra.damoreira.com/docs/messaging/kotlin/) | Quick start, configuration, API, testing and modules |
 | [Rust library](https://snodra.damoreira.com/docs/messaging/rust/) | Quick start, configuration, API, testing and add-ons |
+| [Go library](https://snodra.damoreira.com/docs/messaging/go/) | Quick start, configuration, API and testing at feature level 1 |
 | [Add-ons](https://snodra.damoreira.com/docs/add-ons/) | Kafka, RabbitMQ Streams, MongoDB and SQL stores |
 | [Operations](https://snodra.damoreira.com/docs/operations/) | Upgrades, deployment and observability |
 | [Examples](https://snodra.damoreira.com/docs/examples/) | A working multi-service system with the sandbox |
