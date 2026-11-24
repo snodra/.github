@@ -79,7 +79,7 @@ libraries give every service the same delivery, retry and saga semantics.
 | **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client for the same protocol | Go | 🚧 in progress |
 | **[snodra-event-browser](https://github.com/snodra/snodra-event-browser)** | Read-only event browser add-on for the dashboard | Rust | `docker run snodra/snodra-event-browser:0.2.0` |
 | **[snodra-conformance](https://github.com/snodra/snodra-conformance)** | The protocol conformance runner and reference service | Rust | `cargo run -p snodra-conformance` |
-| **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | MkDocs Material | [snodra.damoreira.com](https://snodra.damoreira.com/docs/) |
+| **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | Astro Starlight | [snodra.damoreira.com](https://snodra.damoreira.com/docs/) |
 
 ## Quick start
 
