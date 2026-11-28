@@ -68,13 +68,13 @@ libraries give every service the same delivery, retry and saga semantics.
   proves it, check by check, against a real server and fake hubs.
 - **Production pieces included.** Static token, OAuth2/OIDC JWT and mTLS authentication with per-service
   ACLs, multi-server routing without server-to-server traffic, OTLP metrics, health probes and a
-  dashboard served from the same binary.
+  dashboard served from the same binary, with a live schema catalogue of the message contracts services declare.
 
 ## The suite
 
 | Project | What it is | Stack | Get it |
 |---|---|---|---|
-| **[Snodra Server](https://github.com/snodra/snodra-server)** | The stateless gRPC router, dashboard and control plane | Rust, tonic | `docker run -p 7000:7000 -p 7001:7001 snodra/snodra-server:0.6.0` |
+| **[Snodra Server](https://github.com/snodra/snodra-server)** | The stateless gRPC router, dashboard and control plane | Rust, tonic | `docker run -p 7000:7000 -p 7001:7001 -e SNODRA_SERVER_CATALOG=off snodra/snodra-server:0.7.0` |
 | **[snodra-messaging](https://github.com/snodra/snodra-messaging)** | Spring Boot starter: buses, handlers, outbox, sagas, testing kits | Kotlin, Spring Boot 4 | [`com.damoreira.snodra:snodra-messaging`](https://central.sonatype.com/artifact/com.damoreira.snodra/snodra-messaging) |
 | **[snodra-messaging-rs](https://github.com/snodra/snodra-messaging-rs)** | One builder for the hub client, event store, outbox and handlers | Rust | [`snodra-messaging-rs`](https://crates.io/crates/snodra-messaging-rs) |
 | **[snodra-messaging-python](https://github.com/snodra/snodra-messaging-python)** | asyncio client with processors, control, dead letters, sagas and external calls, at feature level 4 | Python | [`0.8.0`](https://pypi.org/project/snodra-messaging/0.8.0/) |
@@ -88,10 +88,12 @@ libraries give every service the same delivery, retry and saga semantics.
 Run the server. It keeps no state, so this is safe to start on any machine:
 
 ```sh
-docker run --rm -p 7000:7000 -p 7001:7001 snodra/snodra-server:0.6.0
+docker run --rm -p 7000:7000 -p 7001:7001 -e SNODRA_SERVER_CATALOG=off snodra/snodra-server:0.7.0
 ```
 
-gRPC is on `7000` and the dashboard on <http://localhost:7001/ui/>. With no configuration the server
+gRPC is on `7000` and the dashboard on <http://localhost:7001/ui/>. `SNODRA_SERVER_CATALOG=off` is there because
+server 0.7 keeps a schema catalogue by default and refuses services that declare no contracts, which the released
+client libraries do not yet. With no configuration the server
 accepts anonymous clients; production settings, TLS and ACLs are in the
 [server reference](https://snodra.damoreira.com/docs/server/).
 
@@ -155,7 +157,7 @@ claims is a first-class member of the suite, whichever language it is written in
 |---|---|
 | [Getting started](https://snodra.damoreira.com/docs/getting-started/) | Install the server and a client, then send a first command |
 | [Core concepts](https://snodra.damoreira.com/docs/concepts/) | CQRS, commands, queries, events, sagas, processors and consistency |
-| [Server](https://snodra.damoreira.com/docs/server/) | Routing, authentication, settings, dashboard, topology, processor control, protocol |
+| [Server](https://snodra.damoreira.com/docs/server/) | Routing, authentication, settings, dashboard, schema catalogue, topology, processor control, protocol |
 | [Kotlin library](https://snodra.damoreira.com/docs/messaging/kotlin/) | Quick start, configuration, API, testing and modules |
 | [Rust library](https://snodra.damoreira.com/docs/messaging/rust/) | Quick start, configuration, API, testing and add-ons |
 | [Go library](https://snodra.damoreira.com/docs/messaging/go/) | Quick start, configuration, API, testing and add-ons at feature level 4 |
