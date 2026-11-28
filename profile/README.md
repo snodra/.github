@@ -77,8 +77,8 @@ libraries give every service the same delivery, retry and saga semantics.
 | **[Snodra Server](https://github.com/snodra/snodra-server)** | The stateless gRPC router, dashboard and control plane | Rust, tonic | `docker run -p 7000:7000 -p 7001:7001 snodra/snodra-server:0.6.0` |
 | **[snodra-messaging](https://github.com/snodra/snodra-messaging)** | Spring Boot starter: buses, handlers, outbox, sagas, testing kits | Kotlin, Spring Boot 4 | [`com.damoreira.snodra:snodra-messaging`](https://central.sonatype.com/artifact/com.damoreira.snodra/snodra-messaging) |
 | **[snodra-messaging-rs](https://github.com/snodra/snodra-messaging-rs)** | One builder for the hub client, event store, outbox and handlers | Rust | [`snodra-messaging-rs`](https://crates.io/crates/snodra-messaging-rs) |
-| **[snodra-messaging-python](https://github.com/snodra/snodra-messaging-python)** | asyncio client with processors, control and dead letters, at feature level 3 | Python | [`0.7.0`](https://pypi.org/project/snodra-messaging/0.7.0/) |
-| **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client with processors, control and dead letters, at feature level 3 | Go | [`v0.6.0`](https://github.com/snodra/snodra-messaging-go/releases/tag/v0.6.0) |
+| **[snodra-messaging-python](https://github.com/snodra/snodra-messaging-python)** | asyncio client with processors, control, dead letters, sagas and external calls, at feature level 4 | Python | [`0.8.0`](https://pypi.org/project/snodra-messaging/0.8.0/) |
+| **[snodra-messaging-go](https://github.com/snodra/snodra-messaging-go)** | Go client with processors, control, dead letters, sagas and external calls, at feature level 4 | Go | [`v0.7.0`](https://github.com/snodra/snodra-messaging-go/releases/tag/v0.7.0) |
 | **[snodra-event-browser](https://github.com/snodra/snodra-event-browser)** | Read-only event browser add-on for the dashboard | Rust | `docker run snodra/snodra-event-browser:0.3.3` |
 | **[snodra-conformance](https://github.com/snodra/snodra-conformance)** | The protocol conformance runner and reference service | Rust | `cargo run -p snodra-conformance` |
 | **[snodra-site](https://github.com/snodra/snodra-site)** | The documentation portal behind `snodra.damoreira.com` | Astro Starlight | [snodra.damoreira.com](https://snodra.damoreira.com/docs/) |
@@ -119,17 +119,17 @@ cargo add snodra-messaging-mongo@0.8        # or snodra-messaging-sqlx with a da
 **Go**
 
 ```sh
-go get github.com/snodra/snodra-messaging-go@v0.6.0
-go get github.com/snodra/snodra-messaging-go/kafka@v0.6.0      # or /rabbitmq
-go get github.com/snodra/snodra-messaging-go/mongo@v0.6.0      # or /sql
+go get github.com/snodra/snodra-messaging-go@v0.7.0
+go get github.com/snodra/snodra-messaging-go/kafka@v0.7.0      # or /rabbitmq
+go get github.com/snodra/snodra-messaging-go/mongo@v0.7.0      # or /sql
 ```
 
 **Python**
 
 ```sh
-pip install snodra-messaging==0.7.0
-pip install snodra-messaging-kafka==0.7.0      # or snodra-messaging-rabbitmq
-pip install snodra-messaging-mongo==0.7.0      # or snodra-messaging-sql
+pip install snodra-messaging==0.8.0
+pip install snodra-messaging-kafka==0.8.0      # or snodra-messaging-rabbitmq
+pip install snodra-messaging-mongo==0.8.0      # or snodra-messaging-sql
 ```
 
 Then take the shortest path from a running server to a registered handler:
@@ -140,13 +140,14 @@ crate and database feature.
 ## One protocol, many languages
 
 A Snodra service registers the command and query types it handles and opens one long-lived stream.
-Any language can implement that protocol — the Kotlin, Rust, Go and Python libraries already do, and
-Go and Python are at **feature level 3**. The [conformance runner](https://github.com/snodra/snodra-conformance)
+Any language can implement that protocol — the Kotlin, Rust, Go and Python libraries already do, all
+four at **feature level 4**. The [conformance runner](https://github.com/snodra/snodra-conformance)
 proves level 1 against a real server and fake hubs, with **PASS**, **FAIL**, **SKIPPED** and
 **NOT IMPLEMENTED** per check id; the libraries' own event-store and message-store kits prove levels 2
-and 3, from the outbox and processed-event markers through processors, control, reset/replay and dead
-letters. Sagas remain level 4. A client that passes the feature levels it claims is a first-class
-member of the suite, whichever language it is written in.
+to 4, from the outbox and processed-event markers through processors, control, reset/replay and dead
+letters to sagas, deadlines and idempotent external calls, and the cross-language interop harness
+continues one saga across languages on shared stores. A client that passes the feature levels it
+claims is a first-class member of the suite, whichever language it is written in.
 
 ## Documentation
 
@@ -157,8 +158,8 @@ member of the suite, whichever language it is written in.
 | [Server](https://snodra.damoreira.com/docs/server/) | Routing, authentication, settings, dashboard, topology, processor control, protocol |
 | [Kotlin library](https://snodra.damoreira.com/docs/messaging/kotlin/) | Quick start, configuration, API, testing and modules |
 | [Rust library](https://snodra.damoreira.com/docs/messaging/rust/) | Quick start, configuration, API, testing and add-ons |
-| [Go library](https://snodra.damoreira.com/docs/messaging/go/) | Quick start, configuration, API, testing and add-ons at feature level 3 |
-| [Python library](https://snodra.damoreira.com/docs/messaging/python/) | Quick start, configuration, API, testing and add-ons at feature level 3 |
+| [Go library](https://snodra.damoreira.com/docs/messaging/go/) | Quick start, configuration, API, testing and add-ons at feature level 4 |
+| [Python library](https://snodra.damoreira.com/docs/messaging/python/) | Quick start, configuration, API, testing and add-ons at feature level 4 |
 | [Add-ons](https://snodra.damoreira.com/docs/add-ons/) | Kafka, RabbitMQ Streams, MongoDB and SQL stores |
 | [Operations](https://snodra.damoreira.com/docs/operations/) | Upgrades, deployment and observability |
 | [Examples](https://snodra.damoreira.com/docs/examples/) | A working multi-service system with the sandbox |
